@@ -30,10 +30,14 @@ class Registration extends Component {
   }
 
   componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    } else {
-      console.log("not authorized");
+    console.log(this.props);
+    if (this.props.auth) {
+      if (this.props.auth.isAuthenticated) {
+        console.log("is authenticated");
+        this.props.history.push("/dashboard");
+      } else {
+        console.log("not authorized");
+      }
     }
   }
 

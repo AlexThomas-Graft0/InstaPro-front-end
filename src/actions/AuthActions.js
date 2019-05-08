@@ -6,12 +6,12 @@ import setAuthToken from "../utils/setAuthToken";
 
 export const registerUser = (userData, history) => dispatch => {
   Axios.post(
-    "https://9lx7w1w95w.sse.codesandbox.io/api/users/register",
+    "https://53o8qypq5x.sse.codesandbox.io/api/users/register",
     userData
   )
     .then(res => {
       Axios.post(
-        "https://9lx7w1w95w.sse.codesandbox.io/api/users/login",
+        "https://53o8qypq5x.sse.codesandbox.io/api/users/login",
         userData
       )
         .then(res => {
@@ -38,7 +38,7 @@ export const registerUser = (userData, history) => dispatch => {
 
 export const loginUser = (userData, history) => dispatch => {
   console.log(userData);
-  Axios.post("https://9lx7w1w95w.sse.codesandbox.io/api/users/login", userData)
+  Axios.post("https://53o8qypq5x.sse.codesandbox.io/api/users/login", userData)
     .then(res => {
       const { token } = res.data;
       localStorage.setItem("token", token);

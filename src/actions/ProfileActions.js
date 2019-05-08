@@ -16,7 +16,7 @@ export const profileLoading = () => {
 
 export const getProfile = username => dispatch => {
   dispatch(profileLoading());
-  Axios.get(`https://9lx7w1w95w.sse.codesandbox.io/api/profile/${username}`)
+  Axios.get(`https://53o8qypq5x.sse.codesandbox.io/api/profile/${username}`)
     .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
     .catch(err => dispatch({ type: GET_PROFILE, payload: null }));
 };

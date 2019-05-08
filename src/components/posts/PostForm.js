@@ -9,8 +9,14 @@ import config from "../../config/firebase";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
-if (!firebase.apps.length) {
-  firebase.initializeApp(config);
+
+if (!firebase.apps.length > 0) {
+  if (config.apiKey && config.projectId && config.storageBucket)
+    firebase.initializeApp({
+      apiKey: config.apiKey,
+      projectId: config.projectId,
+      storageBucket: config.storageBucket
+    });
 }
 
 const storage = firebase.storage().ref();

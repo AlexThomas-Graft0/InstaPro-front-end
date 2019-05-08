@@ -23,7 +23,6 @@ import Login from "./components/auth/Login";
 import Footer from "./components/layout/Footer";
 import Dashboard from "./components/dashboard/Dashboard";
 import Profile from "./components/profile/Profile";
-import { Navbar } from "./components/layout/Navbar";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

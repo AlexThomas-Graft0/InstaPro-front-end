@@ -26,10 +26,12 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    } else {
-      console.log("not authorized");
+    if (this.props.auth) {
+      if (this.props.auth.isAuthenticated) {
+        this.props.history.push("/dashboard");
+      } else {
+        console.log("not authorized");
+      }
     }
   }
 
