@@ -28,7 +28,7 @@ export class Navbar extends Component {
 
   render() {
     const { errors } = this.state;
-    const { user } = this.props.auth;
+    const { user } = this.props;
     return (
       <nav className="navbar navbar-bottom navbar-expand-sm navbar-light bg-white border-bottom">
         <div className="container-fluid">
@@ -96,8 +96,9 @@ Navbar.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({ errors: state.errors, auth: state.auth });
-
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 const mapDispatchToProps = { logoutUser };
 
 export default connect(

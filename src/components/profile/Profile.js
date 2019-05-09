@@ -1,27 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-// import ProfilePosts from "./ProfilePosts";
-import { getPosts } from "../../actions/PostActions";
 import { getProfile } from "../../actions/ProfileActions";
+import { getPosts } from "../../actions/PostActions";
 import { Navbar } from "../layout/Navbar";
-import Post from "../posts/Post";
 
 export class Profile extends Component {
   //if profile id == req.user / auth.upser id then show actions
 
-  componentDidMount() {
-    console.log(this.props);
+  async componentDidMount() {
     if (this.props.match.params.username) {
       this.props.getProfile(this.props.match.params.username);
+      this.props.getPosts();
     }
-    this.props.getPosts();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
   }
 
   addDefaultSrc(ev) {
@@ -31,8 +24,10 @@ export class Profile extends Component {
 
   render() {
     const { profile, loading, posts } = this.props;
-    const { user } = this.props.auth;
-
+    // if (this.props.auth) {
+    //   const { user } = this.props.auth;
+    //   console.log(user);
+    // }
     let content;
     let postContent;
     if (posts === null || posts === undefined || loading) {
@@ -56,7 +51,7 @@ export class Profile extends Component {
     } else {
       content = (
         <div className="row mt-5 py-5">
-          <div className="col-md-4 mt-5">
+          <div className="col-md-4">
             <img
               src={profile.avatar}
               alt={profile.name}
@@ -100,22 +95,25 @@ export class Profile extends Component {
 
     return (
       <div>
-        {/* <Navbar /> */}
+        <Navbar user={this.props.auth.user} />
         <div className="container">
           {content}
           <hr />
           <div className="row">
             <button type="button" className="btn btn-default btn-sm mx-auto">
+              <i className="fas fa-th mr-1" />
               POSTS
             </button>
             <button type="button" className="btn btn-default btn-sm mx-auto">
+              <i className="fas fa-tv mr-1" />
               IGTV
             </button>
             <button type="button" className="btn btn-default btn-sm mx-auto">
+              <i className="far fa-bookmark mr-1" />
               SAVED
             </button>
             <button type="button" className="btn btn-default btn-sm mx-auto">
-              <i className="fas fa-id-card-alt" />
+              <i className="fas fa-id-card-alt mr-1" />
               TAGGED
             </button>
           </div>
@@ -142,7 +140,6 @@ const mapStateToProps = state => ({
   profile: state.profiles.profile,
   posts: state.posts
 });
-
 const mapDispatchToProps = {
   getProfile,
   getPosts

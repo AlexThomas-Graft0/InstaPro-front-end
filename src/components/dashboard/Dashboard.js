@@ -26,7 +26,7 @@ export class Dashboard extends Component {
     const { user } = this.props.auth;
     return (
       <React.Fragment>
-        <Navbar />
+        <Navbar user={user} />
         <div className="container">
           <div className="row">
             <div className="col-md-8">
