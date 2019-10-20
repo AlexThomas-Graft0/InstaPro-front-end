@@ -127,7 +127,7 @@ class Login extends Component {
         </div>
         <div className="login mt-1">
           Don't have an account?{" "}
-          <a href="/" title="Sign up">
+          <a className="btn btn-info" href="/" title="Sign up">
             Sign up
           </a>
         </div>

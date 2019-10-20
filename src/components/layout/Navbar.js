@@ -29,9 +29,11 @@ export class Navbar extends Component {
   render() {
     const { errors } = this.state;
     const { user } = this.props;
+    console.log(user);
+
     return (
       <nav className="navbar navbar-bottom navbar-expand-sm navbar-light bg-white border-bottom">
-        <div className="container-fluid">
+        <div className="container">
           <Link className="navbar-brand" to="/">
             <i className="fas fa-camera-retro fa-lg" /> | InstaPro
           </Link>
@@ -62,20 +64,20 @@ export class Navbar extends Component {
               </li>
             </ul>
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
+              <li className="nav-item mx-2 text-dark">
                 <Link className="nav-link" to="/explore">
-                  <i className="far fa-compass fa-lg" />
+                  <i className="far fa-compass fa-lg text-dark" />
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item mx-2">
                 {/* recent activity */}
                 <span className="nav-link">
-                  <i className="far fa-heart fa-lg" />
+                  <i className="far fa-heart fa-lg text-dark" />
                 </span>
               </li>
-              <li className="nav-item">
+              <li className="nav-item mx-2">
                 <Link className="nav-link" to={`/profile/${user.username}`}>
-                  <i className="far fa-user fa-lg" />
+                  <i className="far fa-user fa-lg text-dark" />
                 </Link>
                 <a href="/" className="nav-link" onClick={this.onLogout}>
                   Logout
@@ -91,7 +93,7 @@ export class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  errors: PropTypes.object.isRequired,
+  // errors: PropTypes.object.isRequired,
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };

@@ -12,6 +12,9 @@ export default function(state = initialState, action) {
     case TEST_DISPATCH:
       return { ...state, user: action.payload };
     case SET_CURRENT_USER:
+      console.log("action.payload");
+      console.log(action.payload);
+      console.log("action.payload");
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import checkDate from "../../utils/checkDate";
 //like post, flat post, add comment, actions(report innappropritate, unfoolow, go to post, cancel)
 import { likePost, addComment } from "../../actions/PostActions";
+import { followUser } from "../../actions/UserActions";
 
 import Tooltip from "../common/Tooltip";
 import Comments from "./Comments";
@@ -69,23 +70,49 @@ export class Post extends Component {
     //   return false;
     // }
   }
+
+  handleFollow = user => {
+    // user.following;
+    this.props.followUser(user);
+
+    console.log(this.props.auth);
+    // this.props.get
+    // console.log("this.props.auth");
+    // console.log(this.props.auth.user);
+    // console.log("this.props.auth");
+  };
+
   render() {
-    const { post } = this.props;
-    const { errors } = this.props;
+    const { post, error } = this.props;
+    const { user } = this.props.auth;
 
     //add auth here to check if the user is blocked? idk
-
+    // console.log(user);
     let likes;
     let likesList;
 
     if (post.likes !== null && post.likes !== undefined) {
       if (post.likes.length > 0) {
         likes = <span>{post.likes.length} likes</span>;
-        likesList = post.likes.map(like => (
-          <li key={like._id} className="list-group-item list-group-item-action">
-            <Link to={`/profile/${like.name}`}>{like.name}</Link>
-          </li>
-        ));
+        likesList = post.likes.map(like => {
+          // console.log(this.props);
+          like.button =
+            user.following.filter(follower => follower.user === like.user)
+              .length > 0
+              ? "Unfollow"
+              : "Follow";
+          return (
+            <li
+              key={like._id}
+              className="list-group-item list-group-item-action"
+            >
+              <Link to={`/profile/${like.name}`}>{like.name}</Link>
+              <button onClick={this.handleFollow.bind(this, like.user)}>
+                {like.button}
+              </button>
+            </li>
+          );
+        });
       }
     }
 
@@ -189,7 +216,8 @@ Post.propTypes = {
   auth: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
   likePost: PropTypes.func.isRequired,
-  addComment: PropTypes.func.isRequired
+  addComment: PropTypes.func.isRequired,
+  followUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -197,7 +225,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-const mapDispatchToProps = { likePost, addComment };
+const mapDispatchToProps = { likePost, addComment, followUser };
 
 export default connect(
   mapStateToProps,

@@ -169,7 +169,7 @@ class Registration extends Component {
         </div>
         <div className="register mt-1">
           Have an account?{" "}
-          <a href="/login" title="Login">
+          <a className="btn btn-info" href="/login" title="Login">
             Log in
           </a>
         </div>

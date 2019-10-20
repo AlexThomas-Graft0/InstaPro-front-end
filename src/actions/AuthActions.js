@@ -55,6 +55,7 @@ export const loginUser = (userData, history) => dispatch => {
 };
 
 export const setCurrentUser = decoded_token => {
+  console.log("here");
   return { type: SET_CURRENT_USER, payload: decoded_token };
 };
 
