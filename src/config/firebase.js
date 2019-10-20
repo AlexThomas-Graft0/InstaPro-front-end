@@ -2,7 +2,7 @@
 
 // let config;
 
-// Axios.get("https://53o8qypq5x.sse.codesandbox.io/api/config")
+// Axios.get("http://localhost:5000/api/config")
 //   .then(res => (module.exports = res.data))
 //   .catch(err => console.log(`err:  ${err}`));
 // // module.exports = config;

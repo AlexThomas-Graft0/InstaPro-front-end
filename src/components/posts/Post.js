@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import checkDate from "../../utils/checkDate";
 //like post, flat post, add comment, actions(report innappropritate, unfoolow, go to post, cancel)
 import { likePost, addComment } from "../../actions/PostActions";
-import { followUser } from "../../actions/UserActions";
+import { followUser } from "../../actions/AuthActions";
 
 import Tooltip from "../common/Tooltip";
 import Comments from "./Comments";

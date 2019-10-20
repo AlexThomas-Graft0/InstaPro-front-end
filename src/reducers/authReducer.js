@@ -1,4 +1,4 @@
-import { TEST_DISPATCH, SET_CURRENT_USER } from "../actions/Types";
+import { TEST_DISPATCH, SET_CURRENT_USER, FOLLOW_USER } from "../actions/Types";
 import isEmpty from "../validation/is-empty";
 
 //creates initial state
@@ -12,14 +12,13 @@ export default function(state = initialState, action) {
     case TEST_DISPATCH:
       return { ...state, user: action.payload };
     case SET_CURRENT_USER:
-      console.log("action.payload");
-      console.log(action.payload);
-      console.log("action.payload");
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),
         user: action.payload
       };
+    // case FOLLOW_USER:
+    //   return { ...state, user: action.payload };
     default:
       return state;
   }
